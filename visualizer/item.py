@@ -1,5 +1,5 @@
  
-class Object(object):
+class Item(object):
  
     def __init__(self, name, nid):
         
