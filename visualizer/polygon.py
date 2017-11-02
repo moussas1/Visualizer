@@ -5,6 +5,7 @@ class Polygon(object):
         """Constructor"""
         self._name = name
         self._values = initial_values
+        #self._color = color 
  
     def set_new_values(self, new_values):
         """Update your polygon"""
