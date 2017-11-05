@@ -3,11 +3,11 @@ from Polygon import Polygon
 class Frame(object):
 
  
-    def __init__(self, number,image):
+    def __init__(self, number):
         """Constructor"""
         self._number = number
         self._polygons = []
-        self._image = image
+        self._image = None
  
     def set_new_image(self, image):
         """Update your polygon"""
