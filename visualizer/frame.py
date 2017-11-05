@@ -1,4 +1,4 @@
-from Polygon import Polygon
+import polygon
 
 class Frame(object):
 

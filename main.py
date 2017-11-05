@@ -64,12 +64,12 @@ def polygon_gen(data_frame,color_list):
 	poly_list = []
 	
 	 while(index <= size):
-	    frame_num = df.ix[index,1]
-	    temp = df.ix[index,3:]
+	    frame_num = data_frame.ix[index,1]
+	    temp = data_frame.ix[index,3:]
 	    polygon_values = temp.dropna().tolist()
 	    it = iter(polygon_values)
 	    zip(it,it)
-	    name = df.ix[index,2]
+	    name = data_frame.ix[index,2]
 	    poly = polygon.Polygon(name,frame_num)
 	    poly.set_color(color_list.get(name))
 	    poly.set_new_values(polygon_values)
