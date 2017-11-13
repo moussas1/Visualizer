@@ -1,8 +1,11 @@
-import visualizer
+from visualizer import polygon
 import csv 
 import pandas as pd 
 import numpy as np 
 import sys
+from collections import defaultdict
+import random
+import cv2
 
 
 
@@ -72,13 +75,21 @@ def polygon_gen(data_frame,color_list):
 	    name = data_frame.ix[index,2]
 	    poly = polygon.Polygon(name,frame_num)
 	    poly.set_color(color_list.get(name))
-	    poly.set_new_values(polygon_values)
+	    poly.set_new_values(it)
 	    poly_list.append(poly)
 	    index = index+1
 
 	return poly_list
 
 def frame_gen(polygons):
-	index = 0 
-	for items in polygons:
+	 
+	
 
+	frame_dict  = defaultdict(list)
+
+	for poly in polygons:
+		current_frame = poly.get_frame()
+	    frame_dict[current_frame].append(poly)
+
+
+	return frame_dict    
