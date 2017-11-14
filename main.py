@@ -5,7 +5,7 @@ import numpy as np
 import sys
 from collections import defaultdict
 import random
-import cv2
+import cv2 as cv 
 
 
 
@@ -18,7 +18,7 @@ output_vid = sys.argv[3]
 cwd = os.getcwd()
 
 #make new directory
-image_directory = cwd+ '/' + video_file
+image_directory = cwd+ '/frames' 
 
 if not os.path.exists(image_directory):
     os.makedirs(image_directory)
@@ -70,16 +70,33 @@ def polygon_gen(data_frame,color_list):
 	    frame_num = data_frame.ix[index,1]
 	    temp = data_frame.ix[index,3:]
 	    polygon_values = temp.dropna().tolist()
-	    it = iter(polygon_values)
-	    zip(it,it)
+	    
 	    name = data_frame.ix[index,2]
 	    poly = polygon.Polygon(name,frame_num)
 	    poly.set_color(color_list.get(name))
-	    poly.set_new_values(it)
+	    poly.set_new_values(polygon_values)
 	    poly_list.append(poly)
 	    index = index+1
 
 	return poly_list
+ def list_zip(alist):         
+        i =0                                                    
+        y=  []
+    	while i < len(alist):
+    		if i < len(alist)-1:
+    		y.append([alist[i], alist[i+1]])
+    		i += 2
+    	return y
+
+
+for polygons in poly_list:   
+        polygons.set_new_values(list_zip(polygons.get_values()))
+
+#Add image path to frame datatype
+#create plotter in frame 
+#write 
+
+
 
 def frame_gen(polygons):
 	 
