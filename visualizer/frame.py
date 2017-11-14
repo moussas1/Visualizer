@@ -64,7 +64,7 @@ class Frame(object):
         img = cv.imread(set_new_image(),1)
         for poly in polygons.get_polygons():
             pts = np.array(poly.get_values(), np.int32)
-            pts . pts.reshape(-1,1,2)
+            pts = pts.reshape(-1,1,2)
             cv.polylines(img,[pts],True,poly.get_color())
 
 
