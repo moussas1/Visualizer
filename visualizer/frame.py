@@ -61,11 +61,13 @@ class Frame(object):
 
 
     def plot(polygons,number):
-        img = cv.imread(set_new_image(),1)
+        image_file = set_new_image()
+        img = cv.imread(image_file,1)
         for poly in polygons.get_polygons():
             pts = np.array(poly.get_values(), np.int32)
             pts = pts.reshape(-1,1,2)
             cv.polylines(img,[pts],True,poly.get_color())
-
+        
+        cv.imwrite(image_file, img)
 
 
