@@ -15,32 +15,13 @@ class Frame(object):
         self._image = None
         self._directory = None
 
-
-    
-    def set_directory(self):
-        cwd = os.getcwd()
-        directory = cwd + '/frames'
-        
-
-        return directory
-
- 
     def set_new_image(self):
-        """Update your polygon"""
-
-        directory = set_directory()
-        os.chdir(directory)
-        for file in glob.glob(create_num(number)+'.png'):
-
-            self._image= file
-
-            return _image
-
-
-
-        
+        """Update your polygon"""  
+        directory = os.getcwd() + '/frames'
+        self._image = '%s/%s.png' % (directory, self.create_num(number))
+        return self._image
    
-    def create_num(number):
+    def create_num(self, number):
         x = str(number+1)
         leng = len(x)
         y = 0
@@ -48,7 +29,6 @@ class Frame(object):
             x = '0' + x
             y+=1
         return x    
-
 
     def get_image(self):
         return self._image
@@ -59,10 +39,9 @@ class Frame(object):
     def get_polygons(self):
         return self._polygons
 
-
-    def plot(polygons,number):
-        image_file = set_new_image()
-        img = cv.imread(image_file,1)
+    def plot(self, polygons,number):
+        image_file = self.set_new_image()
+        img = `cv.imread(image_file,1)
         for poly in polygons.get_polygons():
             pts = np.array(poly.get_values(), np.int32)
             pts = pts.reshape(-1,1,2)
