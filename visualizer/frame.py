@@ -18,7 +18,7 @@ class Frame(object):
     def set_new_image(self):
         """Update your polygon"""  
         directory = os.getcwd() + '/frames'
-        self._image = '%s/%s.png' % (directory, self.create_num(number))
+        self._image = '%s/%s.png' % (directory, self.create_num(self._number))
         return self._image
    
     def create_num(self, number):
@@ -39,13 +39,13 @@ class Frame(object):
     def get_polygons(self):
         return self._polygons
 
-    def plot(self, polygons,number):
+    def plot(self):
         image_file = self.set_new_image()
-        img = `cv.imread(image_file,1)
-        for poly in polygons.get_polygons():
+        img = cv.imread(image_file,1)
+        for poly in self._polygons:
             pts = np.array(poly.get_values(), np.int32)
             pts = pts.reshape(-1,1,2)
-            cv.polylines(img,[pts],True,poly.get_color())
+            cv.polylines(img,[pts],True,(255,255,255))
         
         cv.imwrite(image_file, img)
 
